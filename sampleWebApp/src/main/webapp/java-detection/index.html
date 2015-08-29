@@ -1,0 +1,35 @@
+
+<html>
+
+	<head>
+		<script src="deployJava.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		    	var list = deployJava.getJREs();
+	    		var result = "";
+
+	    		if (list.length == 0) {
+	        		console.log('No Detectable Java Platforms are Installed');
+	    		} else {
+				result = list[0];
+				for (var i=1; i<list.length; i++) {
+	            			result += ", " + list[i];
+				}
+	        		console.log("You have the following Java Platform(s) installed: \n" + result);
+	    		}
+
+			console.log("isWebStartInstalled = " + deployJava.isWebStartInstalled());
+			console.log("isPluginInstalled = " + deployJava.isPluginInstalled());
+			console.log("getBrowser = " + deployJava.getBrowser());
+			
+	
+			
+		</script>
+	</head>
+
+<body>
+Hi Mom.
+
+
+</body>
+
+</html>

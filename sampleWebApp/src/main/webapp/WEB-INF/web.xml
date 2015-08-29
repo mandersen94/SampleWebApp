@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+ xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ <display-name>webExample</display-name>
+ <filter>
+  <filter-name>txId</filter-name>
+  <filter-class>org.markandersen.j2ee.servlet.TxIdFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>txId</filter-name>
+  <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ <!-- Listeners -->
+ <listener>
+  <listener-class>org.markandersen.j2ee.servlet.SimpleSessionTrackingSessionListener</listener-class>
+ </listener>
+ <listener>
+  <listener-class>org.markandersen.j2ee.servlet.LogSysOutSessionActivationListener</listener-class>
+ </listener>
+ <listener>
+  <listener-class>org.markandersen.j2ee.servlet.LogSysOutSessionAttributeListener</listener-class>
+ </listener>
+ <listener>
+  <listener-class>org.markandersen.j2ee.servlet.LogSysOutServletContextListener</listener-class>
+ </listener>
+ <listener>
+  <listener-class>org.markandersen.j2ee.servlet.LogSysOutRequestListener</listener-class>
+ </listener>
+ <servlet>
+  <display-name>TableServlet</display-name>
+  <servlet-name>TableServlet</servlet-name>
+  <servlet-class>org.markandersen.TableServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>SessionServlet</servlet-name>
+  <servlet-class>org.markandersen.session.SessionServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>AddSessionAttributeServlet</servlet-name>
+  <servlet-class>org.markandersen.session.AddSessionAttributeServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>PingServlet</servlet-name>
+  <servlet-class>org.markandersen.servlet.PingServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>OneBox</description>
+  <display-name>OneBox</display-name>
+  <servlet-name>OneBox</servlet-name>
+  <servlet-class>org.markandersen.google.onebox.OneBoxServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet>
+  <display-name>OneBoxProvider</display-name>
+  <servlet-name>OneBoxProvider</servlet-name>
+  <servlet-class>org.markandersen.google.onebox.OneBoxProvider</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>TableServlet</servlet-name>
+  <url-pattern>/TableServlet</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>SessionServlet</servlet-name>
+  <url-pattern>/Session</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>AddSessionAttributeServlet</servlet-name>
+  <url-pattern>/AddSessionAttribute</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>PingServlet</servlet-name>
+  <url-pattern>/Ping</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>OneBox</servlet-name>
+  <url-pattern>/OneBox</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>OneBoxProvider</servlet-name>
+  <url-pattern>/OneBoxProvider</url-pattern>
+ </servlet-mapping>
+ <welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+ </welcome-file-list>
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
+</web-app>

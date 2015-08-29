@@ -1,0 +1,586 @@
+<html>
+	<head>
+		<script type="text/javascript" src="PluginDetect.js"></script>
+
+	</head>
+	<body>
+		Test page
+		<br>
+		<b>QuickTime Detection</b>
+		<br>
+
+		<script type="text/javascript">
+		<!--
+var minVersion;
+
+
+// EXAMPLE #1A
+document.write('Ex. 1A - ')
+document.write("Installed: " +
+ (PluginDetect.isMinVersion('QuickTime', '0') >= 0 ? 'true' : 'false') + ', ');
+document.write("Version: " + PluginDetect.getVersion('QuickTime') + '<br>')
+
+
+
+// EXAMPLE #1B
+document.write('Ex. 1B - ')
+minVersion = '7'
+var QT = PluginDetect.isMinVersion('QuickTime', minVersion);
+
+if (QT == 1){
+    document.write('QuickTime ' + minVersion + ' or higher has been detected<br>')
+}
+
+else if (QT == -1) {
+   document.write('QuickTime out of date or not installed/enabled<br>')
+}
+
+else if (QT == -2){
+   // ActiveX is disabled
+
+   // When ActiveX is disabled, the PluginDetect cannot detect any plugins in IE.
+   // Also, all <object> tags with classid will be disabled.
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+
+};
+
+
+
+// EXAMPLE #1C
+document.write('Ex. 1C - ')
+minVersion = '7'
+QT = PluginDetect.isMinVersion('QuickTime', minVersion);
+
+if (QT == 1){
+    document.write('QuickTime ' + minVersion + ' or higher has been detected<br>')
+}
+
+else if (QT == -1){
+
+   if (PluginDetect.isMinVersion('QuickTime', '0') >= 0)
+         document.write('QuickTime installed but version is < ' + minVersion + '<br>')
+
+  // If you do not really care about distinguishing between an out of date plugin
+  // and a plugin that is not installed/enabled, then just get rid of
+  // the  PluginDetect.isMinVersion('QuickTime', '0')  statement. This speeds up
+  // code execution for out of date plugins.
+
+   else document.write('QuickTime not installed/enabled<br>')
+
+}
+
+else if (QT == -2){
+   // ActiveX is disabled
+
+   // When ActiveX is disabled, the PluginDetect cannot detect any plugins in IE.
+   // Also, all <object> tags with classid will be disabled.
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+
+};
+
+
+
+
+/*
+
+ NOTE 1: 
+
+ For QuickTime/IE 7+, PluginDetect.isMinVersion('QuickTime', minVersion) is faster and more
+ efficient than PluginDetect.getVersion('QuickTime'). In most cases,
+ PluginDetect.isMinVersion('QuickTime', minVersion) is sufficient for most people's needs.
+
+
+ NOTE 2: 
+ 
+ For QuickTime/IE 7+ when the method
+ PluginDetect.isMinVersion('QuickTime', minVersion) is encountered for the
+ very first time and it >= 0, then a QuickTime ActiveX control is created.
+ If the method is < 0, then the QuickTime ActiveX control is NOT created.
+
+ [The results for the PluginDetect.isMinVersion() method are
+ always stored in memory, so multiple calls to the PluginDetect.isMinVersion() 
+ method with the same input arguments will not generate additional ActiveX controls.
+ 
+ The results for the PluginDetect.getVersion() method are also stored in memory
+ ]
+
+
+
+ NOTE 3:
+
+ For IE 7+ in EXAMPLE #1B, when Quicktime is installed but
+ QuickTime version < minVersion (ie. QT == false), the QuickTime ActiveX control 
+ is never created. Thus the code for example #1B executes very quickly.
+
+ For IE 7+ in EXAMPLE # 1C, when QuickTime is installed but
+ QuickTime version < minVersion (ie. QT === false), the QuickTime ActiveX control
+ is always created. 
+ This is due to the  PluginDetect.isMinVersion('QuickTime', '0')  statement.
+
+
+
+
+ NOTE 4: (SPEED ISSUES for Internet Explorer)
+
+ Assume for the moment that in IE 7+ the QuickTime plugin has not been started 
+ yet when it encounters EXAMPLE # 1B. Also assume that QuickTime is installed, 
+ but that its version is less than minVersion. The code for EXAMPLE # 1B will 
+ execute very quickly precisely because the QuickTime plugin does not 
+ have to initialize/start up.
+
+ On the other hand, let us now assume that the QuickTime plugin has not started
+ yet when it encounters EXAMPLE # 1C (for IE 7+). Again assume that
+ QuickTime is installed and that the version is < minVersion. The QuickTime
+ plugin in this case will start up and an ActiveX control will be created.
+
+ The code for EXAMPLE # 1C will thus take significantly longer to execute
+ than the code for EXAMPLE # 1B.
+ 
+ [On the other hand, if QuickTime is not installed, or it is installed and
+ QuickTime version > minVersion, or the QuickTime plugin
+ was already started up when encountering EXAMPLES #1B or #1C, then the speed
+ differences should be minor.]
+
+
+*/
+
+//--></script>
+
+
+
+
+		<br>
+		<br>
+		<b>Java Detection</b>
+		<br>
+		<script type="text/javascript"><!--
+
+// EXAMPLE # 2A
+document.write('Ex. 2A - ')
+
+var Java  = PluginDetect.isMinVersion('Java', '0');
+if (PluginDetect.isIE){
+
+   // A Java applet can be put into a web page using the <applet> tag.
+   // When you disable Java in the IE browser settings, you disable the
+   // <applet> tag - but NOT the <object> tag.
+   document.write("Java (using &lt;applet&gt; tag) installed/enabled: " +
+     (Java >= 0 && navigator.javaEnabled() ? 'true' : 'false') + '<br>');
+
+
+   // For IE, you can also use the 
+   //  <object> tag with classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" 
+   // to display a Java applet.
+   document.write("Java (using &lt;object&gt; tag with ActiveX control) installed/enabled: " +
+     (Java >= 0 ? 'true' : 'false') + '<br>');
+
+}
+
+
+// For the non-IE browsers, you can also use <object>/<embed>/<applet> tags for your
+// Java applets.
+else{
+  document.write("Java installed/enabled: " + 
+    (Java >= 0 ? 'true' : 'false') + '<br>');
+};
+
+
+document.write("Version: " + PluginDetect.getVersion('Java') + '<br><br>')
+
+
+
+
+
+
+// EXAMPLE # 2B
+// Try to detect if Sun Java 1.4.2 or higher is installed
+document.write('Ex. 2B - ')
+minVersion = '1,4,2'
+var Java = PluginDetect.isMinVersion('Java', minVersion);
+
+if (Java == 1){
+ 
+  document.write('Java ' + minVersion + ' or higher is installed.');
+
+  // For IE, when javaEnabled() is false, then the <applet> tag is disabled.
+  // However, you can still use the <object> tag with classid to display Java, assuming
+  // that ActiveX is enabled.
+  if (PluginDetect.isIE && !navigator.javaEnabled()){
+      document.write('<br><br>The &lt;applet&gt; tag is disabled in your browser settings,<br>')
+      document.write('but the &lt;object&gt; tag with classid can still display your applet.')
+
+  }
+
+  document.write('<br>')
+
+
+}
+
+else if (Java == 0){
+ 
+  // Some browsers (ie Safari 2) do not reveal the Java version in their navigator array,
+  // they only show whether Java is installed or not. It is thus the user's responsibility to
+  // make sure that their Java is up to date.
+  document.write('Java installed but version is unknown<br>')
+
+}
+
+else if (Java == -1) { // JavaMin is false
+
+  if (PluginDetect.isMinVersion('Java', '0') >= 0)
+       document.write('Java installed but out of date<br>')
+
+  // If you do not really care about distinguishing between an out of date plugin
+  // and a plugin that is not installed/enabled, then just get rid of
+  // the  PluginDetect.isMinVersion('Java', '0')  statement. This speeds up
+  // code execution for out of date plugins.
+
+  else {document.write('Java not installed/enabled<br>')}
+
+}
+
+else if (Java == -2){
+   // ActiveX is disabled
+
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+
+};
+
+
+
+
+/*
+
+ NOTE 1:
+
+ For Java/Internet Explorer, PluginDetect.isMinVersion('Java', minVersion) is
+ faster and more efficient than PluginDetect.getVersion('Java').
+ In most cases, PluginDetect.isMinVersion('Java', minVersion) is sufficient to 
+ get the job done.
+
+
+
+ NOTE 2: 
+ 
+ For Sun Java/IE 6+ when the method
+ PluginDetect.isMinVersion('Java', minVersion) >= 0 and is encountered
+ for the very first time, then a Sun Java ActiveX control is created.
+ If the method is < 0, then the Sun Java ActiveX control is NOT created.
+
+
+
+ NOTE 3: (SPEED ISSUES for Internet Explorer)
+
+ The speed issues discussed for QuickTime also apply to Java, especially since
+ the Sun Java plugin can take VERY long to start up and initialize (just look
+ at how slow the startup for Sun JRE 6 is to see what I mean).
+ Hence, you may want to consider not using  PluginDetect.isMinVersion('Java', '0')
+ unless absolutely necessary.
+
+*/
+
+//--></script>
+
+
+
+
+		<br>
+		<br>
+		<b>DevalVR Detection</b>
+		<br>
+		<script type="text/javascript"><!--
+
+// EXAMPLE # 3A
+document.write('Ex. 3A - ')
+document.write("Installed: " + 
+  (PluginDetect.isMinVersion('DevalVR', '0') >= 0 ? 'true' : 'false') + ', ');
+document.write("Version: " + PluginDetect.getVersion('DevalVR') + '<br>')
+
+
+
+
+// EXAMPLE # 3B
+document.write('Ex. 3B - ')
+minVersion = '0,4'
+var DV = PluginDetect.isMinVersion('DevalVR', minVersion);
+
+if (DV == 1){
+   document.write('DevalVR ' + minVersion + ' or higher is installed<br>')
+}
+
+else if (DV == -1){     // DevalVR is out of date or not installed/enabled
+
+  // if DevalVR is installed in IE, then the ActiveX control will be
+  // instantiated here. If you don't want that, then just get rid of the
+  // PluginDetect.isMinVersion('DevalVR', '0')  statement.
+
+  if (PluginDetect.isMinVersion('DevalVR', '0') >= 0)
+       document.write('DevalVR plugin is installed but out of date<br>')
+   
+  else document.write('DevalVR not installed or not enabled<br>')
+
+}
+
+else if (DV == -2){
+   // ActiveX is disabled
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+
+};
+
+
+
+/*
+
+ NOTE 1:
+
+ For DevalVR/Internet Explorer, PluginDetect.isMinVersion('DevalVR', minVersion) is
+ faster and more efficient than PluginDetect.getVersion('DevalVR').
+ In most cases, PluginDetect.isMinVersion('DevalVR', minVersion) is sufficient 
+ to get the job done.
+
+
+ NOTE 2: 
+ 
+ For DevalVR/IE 6+ when the method
+ PluginDetect.isMinVersion('DevalVR', minVersion) >= 0 and is encountered
+ for the very first time, then a DevalVR ActiveX control is created.
+ If the method is < 0, then the DevalVR ActiveX control is NOT created.
+
+
+ 
+ NOTE 3: (SPEED ISSUES for Internet Explorer)
+
+ The speed issues as discussed for QuickTime and Java do not really apply to
+ DevalVR. DevalVR is a very small and fast plugin, so speed does not appear to be an
+ issue here.
+
+
+*/
+
+//--></script>
+
+
+		<br>
+		<br>
+
+		<b>Flash Detection</b>
+		<br>
+		<script type="text/javascript"><!--
+
+// EXAMPLE # 4A
+document.write('Ex. 4A - ')
+document.write("Installed: " + 
+  (PluginDetect.isMinVersion('Flash', '0') >= 0 ? 'true' : 'false') + ', ');
+document.write("Version: " + PluginDetect.getVersion('Flash') + '<br>')
+
+
+
+
+
+
+// EXAMPLE # 4B
+// Try to detect if Flash 8,0,34,0 or higher is installed
+document.write('Ex. 4B - ')
+minVersion = '8,0,34,0'
+var FL = PluginDetect.isMinVersion('Flash', minVersion)
+
+if (FL == 1){
+   document.write('Flash ' + minVersion + ' or higher is installed and enabled<br>')
+}
+
+else if (FL == -1){   // Flash is out of date or not installed
+
+   if (PluginDetect.isMinVersion('Flash', '0') >= 0)
+      document.write('Flash plugin is installed but out of date.<br>')
+
+   else document.write('Flash not installed or not enabled<br>')
+
+}
+
+else if (FL == -2){
+   // ActiveX is disabled
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+};
+
+
+
+/*
+
+
+ NOTE 1:
+
+ For Flash/Internet Explorer, PluginDetect.isMinVersion('Flash', minVersion) is
+ NOT faster ormore efficient than PluginDetect.getVersion('Flash'). 
+ However, most people will probably find PluginDetect.isMinVersion() more
+ useful.
+
+
+ NOTE 2 (For Internet Explorer):
+
+ There are absolutely no speed issues whatsoever for Flash and the PluginDetect
+ script. The very first time you call the isMinVersion() or getVersion()  method,
+ the Flash version is detected and stored in memory. Any subsequent calls
+ to either method will retrieve the result from memory instead of creating 
+ another ActiveX control.
+
+
+
+
+*/
+
+
+
+//--></script>
+
+
+
+		<br>
+		<br>
+		<b>Shockwave Detection</b>
+		<br>
+		<script type="text/javascript"><!--
+
+// EXAMPLE # 5A
+document.write('Ex. 5A - ')
+document.write("Installed: " + 
+  (PluginDetect.isMinVersion('Shockwave', '0') >= 0 ? 'true' : 'false') + ', ');
+document.write("Version: " + PluginDetect.getVersion('Shockwave') + '<br>')
+
+
+
+
+
+// EXAMPLE # 5B
+// Try to detect if Shockwave 9 or higher is installed
+document.write('Ex. 5B - ')
+minVersion = '9'
+
+var SW = PluginDetect.isMinVersion('Shockwave', minVersion);
+
+if (SW == 1){
+   document.write('Shockwave ' + minVersion + ' or higher is installed and enabled<br>')
+}
+
+else if (SW == -1) {  // Shockwave out of date or not installed/enabled
+
+   if (PluginDetect.isMinVersion('Shockwave', '0') >= 0)
+     document.write('Your Shockwave plugin is installed but out of date<br>')
+   else 
+     document.write('Shockwave not installed or not enabled<br>')
+
+}
+
+else if (SW == -2){
+   // ActiveX is disabled
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+
+};
+
+
+
+/*
+
+ NOTE 1:
+
+ For Shockwave/Internet Explorer, PluginDetect.isMinVersion('Shockwave', minVersion) 
+ is NOT faster than PluginDetect.getVersion('Shockwave'). However,
+ PluginDetect.isMinVersion() is probably more useful.
+
+
+ NOTE 2 (For Internet Explorer):
+
+ There are absolutely no speed issues whatsoever for Shockwave and the PluginDetect
+ script. The very first time you call the isMinVersion() or getVersion()  method,
+ the Shockwave version is detected and stored in memory. Any subsequent calls
+ to either method will retrieve the result from memory instead of creating 
+ another ActiveX control.
+
+
+
+*/
+
+
+//--></script>
+
+
+		<br>
+		<br>
+		<b>Windows Media Player</b>
+		<br>
+
+		<script type="text/javascript"><!--
+
+// EXAMPLE # 6A
+document.write('Ex. 6A - ')
+document.write("Installed: " + 
+ (PluginDetect.isMinVersion('WindowsMediaPlayer', '0') >= 0 ? 'true' : 'false') + ', ');
+document.write("Version: " + PluginDetect.getVersion('WindowsMediaPlayer') + '<br>')
+
+
+
+
+
+
+// EXAMPLE # 6B
+document.write('Ex. 6B - ')
+minVersion = "9,0,0,0";
+var WMP = PluginDetect.isMinVersion('WindowsMediaPlayer', minVersion);
+
+if (WMP == 1){
+   document.write('Windows Media Player ' + minVersion + ' or higher is installed and enabled<br>')
+}
+
+else if (WMP == 0){
+   // Some browsers do not reveal the WinMediaPlayer version in their navigator array,
+   // they only show whether the plugin is installed or not. It is thus the user's
+   // responsibility to make sure that their Media Player is up to date.
+   document.write('Windows Media Player installed but version is unknown<br>')
+}
+
+else if (WMP == -1){
+
+   if (PluginDetect.isMinVersion('WindowsMediaPlayer', '0') >= 0)
+      document.write('Windows Media Player installed but out of date<br>')
+
+   else {document.write('Windows Media Player not installed/enabled<br>')}
+
+}
+
+else if (WMP == -2){
+   // ActiveX is disabled
+   document.write('Please enable ActiveX in Internet Explorer so that we can detect your plugins<br>')
+
+};
+
+
+/*
+
+ NOTE 1:
+
+ For WindowsMediaPlayer/Internet Explorer, 
+ PluginDetect.isMinVersion('WindowsMediaPlayer', minVersion) is NOT faster than
+ PluginDetect.getVersion('WindowsMediaPlayer'). However,
+ PluginDetect.isMinVersion() is probably more useful.
+
+
+ NOTE 2 (For Internet Explorer):
+
+ There are absolutely no speed issues whatsoever for WindowsMediaPlayer and the PluginDetect
+ script. The very first time you call the isMinVersion() or getVersion()  method,
+ the WindowsMediaPlayer version is detected and stored in memory. Any subsequent calls
+ to either method will retrieve the result from memory instead of creating 
+ another ActiveX control.
+
+
+
+*/
+
+
+//--></script>
+
+
+		<br>
+		<br>
+
+	</body>
+</html>

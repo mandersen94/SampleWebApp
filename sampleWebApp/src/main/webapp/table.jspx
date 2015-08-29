@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:x="http://java.sun.com/jstl/xml"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:c="http://java.sun.com/jstl/core" version="1.2">
+<jsp:directive.page import="java.util.List"/>
+
+	<jsp:directive.page contentType="text/xml" pageEncoding="ISO-8859-1" />
+	
+	<ajax-response> 
+		<response type="object" id="data_grid_updater"> 
+			<rows update_ui="true">
+
+			<jsp:text>
+			 <![CDATA[
+			<%
+				int startIndex = (Integer)request.getAttribute("startIndex");
+				int endIndex = (Integer)request.getAttribute("endIndex");
+				List subList = (List)request.getAttribute("subList");
+				for(int i = 0; i < subList.size(); i++){
+					String[] row = (String[])subList.get(i);
+			%>
+			]]>
+			</jsp:text>
+
+				<tr>
+					<td>1</td> 
+					<td>column 1</td> 
+					<td>column 2</td> 
+					<td>column 3</td> 
+					<td>column 4</td> 
+					<td>column 5</td> 
+				</tr>
+			<jsp:text>
+				<![CDATA[ 
+				<% 
+				} 
+				%>
+				]]>
+			</jsp:text>
+		 	</rows>
+		</response> 
+	</ajax-response>
+</jsp:root>
+
