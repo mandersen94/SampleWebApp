@@ -1,2 +1,6 @@
 sampleWebApp/log.txt
 sampleWebApp/target
+sampleWebApp/src/main/webapp/WEB-INF/classes/
+sampleWebApp/.project
+sampleWebApp/.settings
+

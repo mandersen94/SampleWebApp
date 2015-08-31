@@ -1,15 +1,21 @@
 package org.markandersen.deploy;
 
+import static org.junit.Assert.*;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.junit.Ignore;
+import org.junit.Test;
 import org.markandersen.deploy.DeployCI;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import junit.framework.TestCase;
 
-public class SimpleIntTest extends TestCase {
+public class SimpleIntTest {
 
+	@Ignore("not sure what this was doing")
+	@Test
 	public void testCalculateURL() throws MalformedURLException {
 		DeployCI deploy = new DeployCI();
 

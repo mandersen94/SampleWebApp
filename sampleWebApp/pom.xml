@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.markandersen</groupId>
-	<artifactId>webExample</artifactId>
+	<artifactId>webexample</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>webExample Maven Webapp</name>
@@ -28,8 +28,8 @@
  -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -44,8 +44,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.2.0.RELEASE</version>
-			<scope>compile</scope>
+			<version>4.1.7.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -86,8 +85,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -104,7 +103,7 @@
 				</executions>
 			</plugin>
 			
-			
+		<!-- 	
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
@@ -115,7 +114,7 @@
 					</webDefaultXml>
 				</configuration>
 			</plugin>
-
+ -->
 
 <!--
 			<plugin>
@@ -154,6 +153,7 @@
 			</plugin>
 			
 -->			
+<!-- 
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
@@ -162,10 +162,10 @@
 						<configuration>
 							<tasks>
 
-								<!--
+								
 									Place any ant task here. You can add anything you can add
 									between <target> and </target> in a build.xml.
-								-->
+								
 								<echo>THIS IS A MESSAGE FROM AN ANTRUN TASK</echo>
 
 							</tasks>
@@ -176,7 +176,8 @@
 					</execution>
 				</executions>
 			</plugin>
-
+ -->
+ <!--  
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -185,10 +186,6 @@
 						<java.lang.String>
 							com.genuitec.eclipse.j2eedt.core.webnature
 						</java.lang.String>
-						<!--
-							e.g., also
-							<java.lang.String>com.genuitec.eclipse.cross.easystruts.eclipse.easystrutsnature</java.lang.String>
-						-->
 						<java.lang.String>
 							org.eclipse.jdt.core.javanature
 						</java.lang.String>
@@ -201,6 +198,8 @@
 					</outputDirectory>
 				</configuration>
 			</plugin>
+-->	
+<!-- 
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
@@ -235,8 +234,9 @@
 					</deployer>
 				</configuration>
 			</plugin>
+ -->
 
-			<plugin>
+<!-- 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
@@ -265,12 +265,12 @@
 					</execution>
 				</executions>
 			</plugin>
-
+ -->
 		</plugins>
 
 	</build>
 	<repositories>
-		<repository>
+<!-- 		<repository>
 			<id>codehaus</id>
 			<url>http://dist.codehaus.org/</url>
 			<layout>default</layout>
@@ -292,13 +292,8 @@
 				<enabled>true</enabled>
 			</releases>
 		</repository>
+	 -->
 	</repositories>
 	<pluginRepositories>
-		<!--
-			<pluginRepository> <id>terracotta-snapshots</id> <url>
-			http://www.terracotta.org/download/reflector/maven2 </url> <releases>
-			<enabled>true</enabled> </releases> <snapshots>
-			<enabled>true</enabled> </snapshots> </pluginRepository>
-		-->
 	</pluginRepositories>
 </project>
