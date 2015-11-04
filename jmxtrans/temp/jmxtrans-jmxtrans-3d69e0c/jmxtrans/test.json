@@ -1,0 +1,22 @@
+{
+  "servers" : [ {
+    "port" : "3939",
+    "host" : "localhost",
+    "queries" : [ {
+      "outputWriters" : [ {
+	       "@class" : "com.googlecode.jmxtrans.model.output.KeyOutWriter",
+        "settings" : {
+          "outputFile" : "./keyout2.txt",
+          "maxLogFileSize" : "10MB",
+          "maxLogBackupFiles" : 200,
+          "delimiter" : "\t",
+          "debug" : true,
+          "typeNames" : ["name"]
+        }
+      } ],
+      "obj" : "java.lang:name=ConcurrentMarkSweep,type=GarbageCollector",
+      "attr" : [ "LastGcInfo" ]
+    } ],
+    "numQueryThreads" : 10
+  } ]
+}

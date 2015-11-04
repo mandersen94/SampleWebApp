@@ -1,0 +1,34 @@
+<property name="logs-folder" value="${jmxtrans.log.dir}/logs"/>
+
+<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${jmxtrans.log.dir}/jmxtrans.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- daily rollover -->
+        <fileNamePattern>${jmxtrans.log.dir}/jmxtrans_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <!-- or whenever the file size reaches 300MB -->
+            <maxFileSize>300MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        <!-- keep 30 days' worth of history -->
+        <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+        <pattern>%date %level [%thread] %logger{36} [%file:%line] %msg%n</pattern>
+    </encoder>
+</appender>
+
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+        <Pattern>%date %-5level [%thread] %-36logger{36} [%file:%line][%method] %msg%n</Pattern>
+    </layout>
+</appender>
+
+
+<logger name="com.googlecode.jmxtrans" level="${jmxtrans.log.level}"/>
+<logger name="org.quartz" level="INFO"/>
+
+<root level="DEBUG">
+    <appender-ref ref="FILE"/>
+    <appender-ref ref="STDOUT"/>
+</root>
