@@ -41,7 +41,7 @@ public class LogSysOutRequestListener implements ServletRequestListener {
     public void requestDestroyed(ServletRequestEvent event) {
         HttpServletRequest servletRequest = (HttpServletRequest) event
                 .getServletRequest();
-        MDC.remove("txID");
+        MDC.remove("txId");
         logger.info("RequestLoggerListener.requestDestroyed()");
     }
 

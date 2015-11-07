@@ -18,7 +18,9 @@
 
 <body>
 <br/>
-<jsp:include page="debug.jsp" flush="true"/>
+Date = <%= new Date() %><br/>
+<br/>
+<jsp:include page="./debug.jsp" flush="true"/>
 <br/><br/>
 
 Index page.<br>
