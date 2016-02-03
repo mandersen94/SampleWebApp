@@ -1,0 +1,24 @@
+RULE trace main entry
+CLASS org.markandersen.client.GoogleSearchMain
+METHOD main
+AT ENTRY
+IF true
+DO traceln("entering main")
+ENDRULE
+ 
+RULE trace main exit
+CLASS org.markandersen.client.GoogleSearchMain
+METHOD main
+AT EXIT
+IF true
+DO traceln("exiting main")
+ENDRULE
+ 
+ 
+RULE dump host and port
+CLASS java.net.Socket
+METHOD connect(java.net.SocketAddress,int)
+AT ENTER
+IF true
+DO traceln("*** enter socket.connect " + $1.toString)
+ENDRULE
